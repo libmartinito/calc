@@ -30,11 +30,6 @@ function operate(operator, a, b) {
 let display = document.querySelector(".output");
 let btns = document.querySelectorAll(".btn");
 
-
-function displayInput(input) {
-  display.textContent += input;
-}
-
 btns.forEach(btn => {
   btn.addEventListener("click", function(e) {
     displayInput(e.target.textContent);
@@ -42,37 +37,11 @@ btns.forEach(btn => {
   });
 });
 
-let a = "";
-let b = "";
-let whereToStore = "a";
-let operator = ""
-
-let opeBtns = document.querySelectorAll(".ope-btn");
-
-opeBtns.forEach(opeBtn => {
-  opeBtn.addEventListener("click", function(e) {
-    if (b == "") {
-      whereToStore = "b";
-    } else {
-      a = operate(operator, parseInt(a), parseInt(b));
-      b = "";
-      display.textContent = a + e.target.textContent;
-    }
-    operator = e.target.textContent;
-  })
-})
-
-let equals = document.querySelector(".equals");
-equals.addEventListener("click", () => {
-  if (b == "") {
-    whereToStore = "b";
-  } else {
-    a = operate(operator, parseInt(a), parseInt(b));
-    b = "";
-    display.textContent = a;
+function displayInput(input) {
+  if (input != "=") {
+    display.textContent += input;
   }
-  operator = "";
-})
+}
 
 function storeValue(input) {
   if (typeof parseInt(input) == "number") {
@@ -83,4 +52,46 @@ function storeValue(input) {
     }
   }
 }
+
+let a = "";
+let b = "";
+let whereToStore = "a";
+let operator = ""
+
+let opes = document.querySelectorAll(".ope");
+
+function performOpe(input) {
+  if (b == "") {
+    whereToStore = "b";
+    displayInput(input);
+  } else {
+    a = operate(operator, parseInt(a), parseInt(b));
+    b = "";
+    updateDisplay(input);
+  }
+  updateOpe(input);
+}
+
+function updateDisplay(input) {
+  if (input != "=") {
+    display.textContent = a + input;
+  } else {
+    display.textContent = a;
+  }
+}
+
+function updateOpe(input) {
+  if (input != "=") {
+    operator = input;
+  } else {
+    operator = "";
+  }
+}
+
+opes.forEach(ope => {
+  ope.addEventListener("click", function(e) {
+    performOpe(e.target.textContent);
+  })
+})
+
 
