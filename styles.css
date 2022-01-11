@@ -74,7 +74,12 @@
   background-color: white;
 }
 
-.ope {
+.ope-btn {
+  width: 150px;
+  height: 60px;
+}
+
+.equals {
   width: 150px;
   height: 60px;
 }
