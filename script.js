@@ -91,9 +91,11 @@ let equals = document.querySelector(".equals");
 
 function performCalcEq() {
   if (a != "" && b != "") {
-    a = operate(operator, parseInt(a), parseInt(b));
+    a = operate(operator, parseInt(a), parseInt(b)).toString();
     b = "";
+    whereToStore = "a";
     display.textContent = a;
+    operator = "";
   }
 }
 
