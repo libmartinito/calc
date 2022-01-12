@@ -11,7 +11,11 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  if (parseInt(b) == 0) {
+    alert("You can't divide by zero.");
+  } else {
+    return a / b;
+  }
 }
 
 function operate(operator, a, b) {
@@ -101,6 +105,17 @@ function performCalcEq() {
 
 equals.addEventListener("click", () => {performCalcEq()});
 
+let clear = document.querySelector(".clear");
+
+function clearCalc() {
+  a = "";
+  b = "";
+  whereToStore = "a";
+  display.textContent = "";
+  operator = "";
+}
+
+clear.addEventListener("click", () => {clearCalc()});
 
 
 
