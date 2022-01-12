@@ -3,27 +3,32 @@
   margin: 0;
 }
 
+body,
+button {
+  font-family: 'Orbitron';
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100vw;
+  background-color: #36454f;
 }
 
 .calc-container {
   display: flex;
   flex-direction: column;
-  width: 600px;
-  height: 400px;
+  width: 603px;
+  height: 405px;
   box-sizing: border-box;
-  background-color: gray;
+  background-color: #d3d3d3;
 }
 
 .output {
-  width: 600px;
+  width: 603px;
   height: 100px;
-  border: 2px solid black;
   box-sizing: border-box;
   background-color: white;
   display: flex;
@@ -32,22 +37,31 @@
 }
 
 .btn-container {
-  width: 600px;
+  width: 603px;
+  height: 305px;
   display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .numclear-container {
-  width: 450px;
+  width: 452px;
+  height: 305px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .clear-back-container {
-  width: 450px;
+  width: 452px;
+  height: 60px;
   display: flex;
+  justify-content: space-between;
 }
 .clear {
-  width: 300px;
+  width: 301px;
   height: 60px;
 }
 
@@ -57,8 +71,10 @@
 }
 
 .num-container {
+  height: 244px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .num {
@@ -67,7 +83,7 @@
 }
 
 .zero {
-  width: 300px;
+  width: 301px;
   height: 60px;
 }
 
@@ -80,7 +96,9 @@
   width: 150px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  justify-content: space-between;
+  background-color: #d3d3d3;
+  padding-bottom: 1px;
 }
 
 .ope {
@@ -91,4 +109,53 @@
 .equals {
   width: 150px;
   height: 60px;
+}
+
+.btn,
+.decimal,
+.ope,
+.equals,
+.clear,
+.backspace {
+  padding: none;
+  margin: none;
+  box-sizing: border-box;
+  background-color: #faf9f6;
+  border: none;
+}
+
+.equals {
+  background-color: #add8e6;
+}
+
+button,
+.output {
+  color: #779ecb;
+}
+
+.output {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+button {
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: #a9a9a9;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }

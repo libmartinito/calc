@@ -76,6 +76,10 @@ function clickButton(input) {
       button = document.querySelector(".equals");
       button.click();        
       break;
+    case "Backspace":
+      button = document.querySelector(".backspace");
+      button.click();
+      break;
     default:
       button = document.querySelector(`.b${input}`);
       button.click();
@@ -213,5 +217,37 @@ function deleteLastStoredDigit() {
 let backspace = document.querySelector(".backspace");
 
 backspace.addEventListener("click", () => {deleteLast()});
+
+function createRipple(event) {
+  let button = event.currentTarget;
+  let circle = document.createElement("span");
+  let diameter = Math.max(button.clientWidth, button.clientHeight);
+  let radius = diameter / 2;
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - (button.offsetLeft + radius)}px`;
+  circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
+  circle.classList.add("ripple");
+  let ripple = button.getElementsByClassName("ripple")[0];
+  if (ripple) {
+    ripple.remove();
+  }
+  button.appendChild(circle);
+}
+
+btns.forEach(btn => {
+  btn.addEventListener("click", createRipple);
+});
+
+opes.forEach(ope => {
+  ope.addEventListener("click", createRipple);
+})
+
+equals.addEventListener("click", createRipple);
+
+clear.addEventListener("click", createRipple);
+
+decimal.addEventListener("click", createRipple);
+
+backspace.addEventListener("click", createRipple);
 
 
