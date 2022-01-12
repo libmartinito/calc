@@ -44,9 +44,46 @@ let btns = document.querySelectorAll(".btn");
 
 btns.forEach(btn => {
   btn.addEventListener("click", function(e) {
-    displayInput(e.target.textContent);
-    storeValue(e.target.textContent);
+    displayInput(this.textContent);
+    storeValue(this.textContent);
   });
+});
+
+function clickButton(input) {
+  let button =""
+  switch(input) {
+    case "+":
+      button = document.querySelector(".add");
+      button.click();
+      break;
+    case "-":
+      button = document.querySelector(".subtract");
+      button.click();        
+      break;
+    case "*":
+      button = document.querySelector(".multiply");
+      button.click();        
+      break;
+    case "/":
+      button = document.querySelector(".divide");
+      button.click();        
+      break;
+    case ".":
+      button = document.querySelector(".decimal");
+      button.click();        
+      break;
+    case "Enter":
+      button = document.querySelector(".equals");
+      button.click();        
+      break;
+    default:
+      button = document.querySelector(`.b${input}`);
+      button.click();
+  }
+}
+
+window.addEventListener("keydown", function(e) {
+  clickButton(e.key);
 });
 
 function displayInput(input) {
