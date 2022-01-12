@@ -178,7 +178,40 @@ function displayDecimal(input) {
   }
 }
 
-decimal.addEventListener("click", (e) => {displayDecimal(e.target.textContent)})
+decimal.addEventListener("click", (e) => {displayDecimal(e.target.textContent)});
 
+function checkForOperator(str) {
+  let operators = ["/", "*", "+", "-"];
+  let containsOpe = false; 
+  for(let i = 0; i < operators.length; i++) {
+    if (str.includes(operators[i])) {
+      containsOpe = true;
+    }
+  }
+  return containsOpe;
+}
+
+function deleteLast() {
+  let str = display.textContent;
+  let lastChar = str.charAt(str.length - 1);
+  if (!(checkForOperator(lastChar))) {
+    display.textContent = display.textContent.slice(0, -1);
+    deleteLastStoredDigit();
+  }
+}
+
+function deleteLastStoredDigit() {
+  if (b == "") {
+    if (a != "") {
+      a = a.toString().slice(0, -1);
+    }
+  } else {
+    b = b.toString().slice(0, -1);
+  }
+}
+
+let backspace = document.querySelector(".backspace");
+
+backspace.addEventListener("click", () => {deleteLast()});
 
 
