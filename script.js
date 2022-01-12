@@ -1,21 +1,29 @@
 function add(a, b) {
-  return a + b;
+  let sum = a + b;
+  return round(sum);
 }
 
 function subtract(a, b) {
-  return a - b;
+  let difference = a - b;
+  return round(difference);
 }
 
 function multiply(a, b) {
-  return a * b;
+  let product = a * b;
+  return round(product);
 }
 
 function divide(a, b) {
   if (parseInt(b) == 0) {
     alert("You can't divide by zero.");
   } else {
-    return a / b;
+    let quotient = a / b;
+    return round(quotient);
   }
+}
+
+function round(num) {
+  return Math.round(num * 100) / 100;
 }
 
 function operate(operator, a, b) {
@@ -46,7 +54,7 @@ function displayInput(input) {
 }
 
 function storeValue(input) {
-  if (typeof parseInt(input) == "number") {
+  if (typeof parseInt(input) == "number" || input == ".") {
     if (whereToStore == "a") {
       a += input;
     } else if (whereToStore == "b") {
@@ -73,7 +81,7 @@ function performCalcOpe(input) {
       updateDisplay(input);
       updateOpe(input);
     } else {
-      a = operate(operator, parseInt(a), parseInt(b));
+      a = operate(operator, parseFloat(a), parseFloat(b));
       b = "";
       updateDisplay(input);
       updateOpe(input);
@@ -95,7 +103,7 @@ let equals = document.querySelector(".equals");
 
 function performCalcEq() {
   if (a != "" && b != "") {
-    a = operate(operator, parseInt(a), parseInt(b)).toString();
+    a = operate(operator, parseFloat(a), parseFloat(b)).toString();
     b = "";
     whereToStore = "a";
     display.textContent = a;
@@ -116,6 +124,24 @@ function clearCalc() {
 }
 
 clear.addEventListener("click", () => {clearCalc()});
+
+let decimal = document.querySelector(".decimal");
+
+function displayDecimal(input) {
+  if(b != "") {
+    if (!(b.includes("."))) {
+      displayInput(input);
+      storeValue(input);
+    }
+  } else if (a != "") {
+    if (!(a.includes("."))) {
+      displayInput(input);
+      storeValue(input);
+    }
+  }
+}
+
+decimal.addEventListener("click", (e) => {displayDecimal(e.target.textContent)})
 
 
 
